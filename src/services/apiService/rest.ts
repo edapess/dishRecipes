@@ -4,6 +4,7 @@ interface IRest {
   appId: String;
   appKey: String;
   getRecipes(query: string): any;
+  getSpecificRecipe(recipeId: string): any;
 }
 
 class RestApi implements IRest {
@@ -17,6 +18,11 @@ class RestApi implements IRest {
   getRecipes(query: string) {
     return apiClient().get(
       `/api/recipes/v2?type=public&app_id=${this.appId}&app_key=${this.appKey}&q=${query}`,
+    );
+  }
+  getSpecificRecipe(recipeId: string) {
+    return apiClient().get(
+      `/api/recipes/v2/${recipeId}?type=public&app_id=${this.appId}&app_key=${this.appKey}`,
     );
   }
 }
