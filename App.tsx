@@ -8,22 +8,20 @@
  * @format
  */
 
-import React, {type PropsWithChildren} from 'react';
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import React from 'react';
 import {store} from './src/core/store';
 import {Provider} from 'react-redux';
-import OurTestComponent from './src/component/NewTestComponent';
-import {NavigationContainer} from '@react-navigation/native';
+import ApplicationRouter from './src/navigation/ApplicationRouter';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 const App = () => {
   console.log(store);
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <View>
-          <OurTestComponent />
-        </View>
-      </NavigationContainer>
-    </Provider>
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <ApplicationRouter />
+      </Provider>
+    </SafeAreaProvider>
   );
 };
 
