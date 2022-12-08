@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Pressable, Text, View} from 'react-native';
 import {connect} from 'react-redux';
+import rest from '../services/apiService/rest';
 import MainApplicationScreen from './MainApplicationScreen';
 
 class HomeScreen extends MainApplicationScreen {
@@ -12,6 +13,13 @@ class HomeScreen extends MainApplicationScreen {
     return (
       <View>
         <Text style={{color: 'black'}}>Home screen in navigation</Text>
+        <Pressable
+          style={{width: 200, height: 200, backgroundColor: 'green'}}
+          onPress={() =>
+            console.log(rest.createUrlWithParams({diet: ['balanced']}))
+          }>
+          <Text>log recipes</Text>
+        </Pressable>
       </View>
     );
   }
