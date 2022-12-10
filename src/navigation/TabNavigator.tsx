@@ -12,9 +12,11 @@ import ExploreScreen from '../screens/ExploreScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SavedRecipesScreen from '../screens/SavedRecipesScreen';
 import {Text} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const {colors} = useTheme();
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -34,7 +36,7 @@ const TabNavigator = () => {
           }
 
           //TODO: edit icon and text colors
-          return <Icon name={iconName} size={24} color={'black'} />;
+          return <Icon name={iconName} size={24} color={colors.text} />;
         },
         tabBarShowLabel: false,
       })}>
