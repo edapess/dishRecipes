@@ -1,4 +1,5 @@
-export type RecipesWithParams = {
+export interface RecipesWithParams {
+  [key: string]: any;
   //Filter by number of ingredients (MIN+, MIN-MAX, MAX),
   //where MIN and MAX are integer numbers.
   //Example: ingr=5-8
@@ -86,4 +87,4 @@ export type RecipesWithParams = {
   co2EmissionsClass?: string;
   //Only show recipes with the specified tags.
   tag?: Array<string>;
-};
+}

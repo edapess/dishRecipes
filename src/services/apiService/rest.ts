@@ -6,6 +6,7 @@ interface IRest {
   appKey: String;
   getRecipes(query: string): any;
   getSpecificRecipe(recipeId: string): any;
+  createUrlWithParams(params: RecipesWithParams): string;
 }
 
 class RestApi implements IRest {
@@ -16,7 +17,7 @@ class RestApi implements IRest {
     this.appId = 'af104379';
     this.appKey = 'f44b03cf3040a8d1818c523958dbc80b';
   }
-  createUrlWithParams(params: RecipesWithParams) {
+  createUrlWithParams(params: RecipesWithParams): string {
     let readyParameters: string = '';
     let url: string = `/api/recipes/v2?type=public&app_id=${this.appId}&app_key=${this.appKey}${readyParameters}`;
     if (!params) {
@@ -34,6 +35,7 @@ class RestApi implements IRest {
         });
         continue;
       }
+      // if value is just a string or boolean then just add to path with parameter
       if (typeof params[parameter] === 'string') {
         readyParameters += `&${parameter}=${params[parameter]}`;
         continue;
@@ -42,8 +44,9 @@ class RestApi implements IRest {
         readyParameters += `&${parameter}=${params[parameter]}`;
       }
       url += readyParameters;
-      return url;
     }
+
+    return url;
   }
   getRecipes(query: string) {
     return apiClient().get(
@@ -56,7 +59,7 @@ class RestApi implements IRest {
     );
   }
   getRecipesWithParams(params: RecipesWithParams) {
-    return apiClient().get();
+    return apiClient().get(this.createUrlWithParams(params));
   }
 }
 
