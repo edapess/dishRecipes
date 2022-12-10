@@ -16,7 +16,13 @@ class HomeScreen extends MainApplicationScreen {
         <Pressable
           style={{width: 200, height: 200, backgroundColor: 'green'}}
           onPress={() =>
-            console.log(rest.createUrlWithParams({diet: ['balanced']}))
+            console.log(
+              rest.createUrlWithParams({
+                diet: ['balanced', 'high-fiber'],
+                ingr: '5-8',
+                random: true,
+              }),
+            )
           }>
           <Text>log recipes</Text>
         </Pressable>

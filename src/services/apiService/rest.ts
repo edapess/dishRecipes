@@ -25,7 +25,24 @@ class RestApi implements IRest {
       );
     }
     for (let parameter in params) {
-      return Array.isArray(params[parameter]);
+      //if value of parameter is array
+      //then grub all elements in array and create new request path
+      if (Array.isArray(params[parameter])) {
+        let paramsArray: string[] = params[parameter];
+        paramsArray.forEach(el => {
+          readyParameters += `&${parameter}=${el}`;
+        });
+        continue;
+      }
+      if (typeof params[parameter] === 'string') {
+        readyParameters += `&${parameter}=${params[parameter]}`;
+        continue;
+      }
+      if (typeof params[parameter] === 'boolean') {
+        readyParameters += `&${parameter}=${params[parameter]}`;
+      }
+      url += readyParameters;
+      return url;
     }
   }
   getRecipes(query: string) {
