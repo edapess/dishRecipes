@@ -1,5 +1,7 @@
+import { RecipesWithParams } from '../../types';
+import {getDefaultDiet} from '../../utils/defaultUtils';
 import apiClient from './apiClient';
-import {RecipesWithParams} from './getRecipesWithParamsType';
+
 
 interface IRest {
   appId: String;
@@ -60,6 +62,11 @@ class RestApi implements IRest {
   }
   getRecipesWithParams(params: RecipesWithParams) {
     return apiClient().get(this.createUrlWithParams(params));
+  }
+  getStartRandomRecipes() {
+    return apiClient().get(
+      this.createUrlWithParams({diet: getDefaultDiet(), random: true}),
+    );
   }
 }
 

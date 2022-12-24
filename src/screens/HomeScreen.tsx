@@ -16,7 +16,7 @@ class HomeScreen extends MainApplicationScreen {
         <Text style={{color: 'black'}}>Home screen in navigation</Text>
         <Pressable
           style={{width: 200, height: 200, backgroundColor: 'green'}}
-          onPress={() => console.log(getDefaultRandomCountry())}>
+          onPress={async () => console.log(await rest.getStartRandomRecipes())}>
           <Text>log recipes</Text>
         </Pressable>
       </View>

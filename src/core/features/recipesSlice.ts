@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import RestApi from '../../services/apiService/rest';
-import {RecipeOnlyWithQuery} from '../../services/apiService/getRecipeTypes';
+import { RecipeOnlyWithQuery } from '../../types';
 
 export interface IRecipes {
   recipes: Array<any>;
