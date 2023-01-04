@@ -13,11 +13,11 @@ import {store} from './src/core/store';
 import {Provider} from 'react-redux';
 import ApplicationRouter from './src/navigation/ApplicationRouter';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import NavigationService from './src/navigation/NavigationService';
 
 const App = () => {
-  console.log(store);
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider >
       <Provider store={store}>
         <ApplicationRouter />
       </Provider>

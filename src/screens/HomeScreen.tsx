@@ -1,34 +1,25 @@
 import React from 'react';
 import {Pressable, Text, View} from 'react-native';
-import {connect} from 'react-redux';
-import rest from '../services/apiService/rest';
-import {getDefaultRandomCountry} from '../utils/defaultUtils';
-import MainApplicationScreen from './MainApplicationScreen';
-
-class HomeScreen extends MainApplicationScreen {
-  constructor(props) {
-    super(props);
-  }
-  renderScreen(): JSX.Element {
-    console.log(this.props);
-    return (
-      <View>
-        <Text style={{color: 'black'}}>Home screen in navigation</Text>
-        <Pressable
-          style={{width: 200, height: 200, backgroundColor: 'green'}}
-          onPress={async () => console.log(await rest.getStartRandomRecipes())}>
-          <Text>log recipes</Text>
-        </Pressable>
-      </View>
-    );
-  }
-}
-
-const mapStateTorProps = () => {
-  return {};
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, Recipes} from '../types';
+import {fetchRecipesWithQuery} from '../core/features/recipesSlice';
+type Props = {
+  fetchRecipesWithQuery: (q: string) => Recipes;
 };
 
-const mapDispatchToProps = dispatch => {
-  return {};
+const HomeScreen: React.FC<Props> = props => {
+  const dispatch = useDispatch();
+  console.log(useSelector(state => state));
+  return (
+    <View>
+      <Text style={{color: 'black'}}>Home screen in navigation</Text>
+      <Pressable
+        style={{width: 200, height: 200, backgroundColor: 'green'}}
+        onPress={() => dispatch(fetchRecipesWithQuery('chicken'))}>
+        <Text>log recipes</Text>
+      </Pressable>
+    </View>
+  );
 };
-export default connect(mapStateTorProps, mapDispatchToProps)(HomeScreen);
+
+export default HomeScreen;
