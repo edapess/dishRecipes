@@ -5,7 +5,12 @@ export const recipesSelector = createSelector(
   (state: IState) => state.recipes,
   recipes => recipes,
 );
-export const specificRecipe = createSelector(
+export const specificRecipeSelector = createSelector(
   (state: IState) => state.recipe,
   recipe => recipe,
+);
+
+export const isRandomRecipesLoadingSelector = createSelector(
+  (state: IState) => state.randomRecipes,
+  recipes => recipes.loading,
 );

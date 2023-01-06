@@ -172,6 +172,7 @@ export type Recipes = {
 export interface IState {
   recipes: {recipes: Recipes};
   recipe: {recipe: Recipe};
+  randomRecipes: {randomRecipes: Recipes};
 }
 
 export interface IRecipe {
