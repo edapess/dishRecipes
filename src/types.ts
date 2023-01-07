@@ -170,9 +170,10 @@ export type Recipes = {
   hits: Hits;
 };
 export interface IState {
-  recipes: {recipes: Recipes};
-  recipe: {recipe: Recipe};
-  randomRecipes: {randomRecipes: Recipes};
+  recipes: IRecipes;
+  recipe: Recipe;
+  randomRecipes: IRecipes;
+  theme: ThemeSlice
 }
 
 export interface IRecipe {
@@ -182,7 +183,50 @@ export interface IRecipe {
 }
 
 export interface IRecipes {
-  recipes: Array<any>;
+  recipes: Array<Recipes>;
   loading: boolean;
   error: undefined | string;
 }
+
+export type Theme = {
+ colors: {
+  background: {
+    100: string,
+    200: string,
+    300: string,
+  },
+  text: {
+    100: string,
+    200: string,
+    300: string,
+  },
+  buttonBackground: {
+    100: string,
+    200: string,
+    300: string,
+  },
+  buttonText: {
+      100: string,
+      200: string,
+      300: string,
+    },
+    
+ }
+ sizes: {
+    text: {
+    text: number,
+    onButtonText: number,
+    title: number,
+    cartText: number
+  },
+  image:{
+    cartImage: number,
+    largeImage: number,
+  },
+  padding: number,
+ }
+  }
+export interface ThemeSlice {
+    theme: Theme;
+    darkThemeEnabled: boolean;
+} 

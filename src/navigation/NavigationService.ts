@@ -1,15 +1,12 @@
 import { RouteProp } from '@react-navigation/native';
 import type {StackNavigationProp} from '@react-navigation/stack'
 
-// type NavigationService = {
-//   navigation:StackNavigationProp,
-//   route:RouteProp
-// }
+type RootStackParamList = {
+  Profile: undefined;
+};
 
 export default class NavigationService {
-  navigation: StackNavigationProp;
-  route: RouteProp;
-  constructor(navigation:StackNavigationProp, route: RouteProp) {
+  constructor(navigation, route: RootStackParamList) {
     this.navigation = navigation;
     this.route = route;
   }

@@ -11,12 +11,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ExploreScreen from '../screens/ExploreScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SavedRecipesScreen from '../screens/SavedRecipesScreen';
-import {Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { themeSelector } from '../core/selectors/themeSelectors';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const {colors} = useTheme();
+  const theme = useSelector(themeSelector);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -36,11 +38,27 @@ const TabNavigator = () => {
           }
 
           //TODO: edit icon and text colors
-          return <Icon name={iconName} size={24} color={colors.text} />;
+          return <Icon name={iconName} size={theme.sizes.text.title} color={theme.colors.text[300]} />;
         },
-        tabBarShowLabel: false,
+        headerShown: true,
+        tabBarBackground: ()=> {
+          return <View style={[{backgroundColor: theme.colors.background[100]}, StyleSheet.absoluteFill]}/>
+        },
+        tabBarLabelStyle: {
+          color: theme.colors.text[300],
+          fontSize: theme.sizes.text.text
+        },
       })}>
-      <Tab.Screen name={HOME_SCREEN} component={HomeScreen} />
+      <Tab.Screen 
+      name={HOME_SCREEN} 
+      component={HomeScreen}
+      options={{
+        headerStyle: {
+          backgroundColor: theme.colors.background[100]
+        },
+   
+      }}
+      />
       <Tab.Screen name={EXPLORE_SCREEN} component={ExploreScreen} />
       <Tab.Screen name={SEARCH_SCREEN} component={SearchScreen} />
       <Tab.Screen name={SAVED_RECIPES_SCREEN} component={SavedRecipesScreen} />
