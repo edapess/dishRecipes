@@ -4,3 +4,4 @@ export const EXPLORE_SCREEN: string = 'Explore';
 export const SEARCH_SCREEN: string = 'Search';
 export const LOGIN_SCREEN: string = 'Sign in';
 export const REGISTRATION_SCREEN: string = 'Sign up';
+export const SETTINGS_SCREEN: string = 'Settings';

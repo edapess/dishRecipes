@@ -1,74 +1,85 @@
 import React from 'react';
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
-import {AppDispatch, Recipes} from '../types';
+import {AppDispatch, Recipes, RecipeType} from '../types';
 import {useDispatch, useSelector} from 'react-redux';
-import { isRandomRecipesLoadingSelector, randomRecipesErrorSelector, randomRecipesSelector } from '../core/selectors/recipesSelectors';
+import {
+  isRandomRecipesLoadingSelector,
+  randomRecipesErrorSelector,
+  randomRecipesSelector,
+} from '../core/selectors/recipesSelectors';
 import RecipeItem from '../components/RecipeItem';
 import AnimatedPlaceholder from '../components/AnimatedPlaceholder';
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 import Skeleton from '../components/Skeleton';
-import { themeSelector } from '../core/selectors/themeSelectors';
-import { toggleTheme } from '../core/features/themeSlice';
-type Props = {
-  fetchRecipesWithQuery: (q: string) => Recipes;
-};
-const {width, height} = Dimensions.get('screen')
-const HomeScreen = (props: Props) => {
+import {themeSelector} from '../core/selectors/themeSelectors';
+import {toggleTheme} from '../core/features/themeSlice';
+import {selectRecipesTypes} from '../core/features/recipesTypesSlice';
+import {recipesTypesSelector} from '../core/selectors/recipesTypesSelectors';
+import RecipeTypeItem from '../components/RecipesTypeItem';
+import {ScrollView} from 'react-native-gesture-handler';
 
-const randomRecipesError = useSelector(randomRecipesErrorSelector);
-const randomRecipes = useSelector(randomRecipesSelector);
-const randomRecipesLoading = useSelector(isRandomRecipesLoadingSelector);
-const theme = useSelector(themeSelector)
-const colors = useTheme()
-const dispatch: AppDispatch = useDispatch()
-return (
-    <View
-    style={[styles.container,
-      {backgroundColor: theme.colors.background[300]}, 
-    ]}
-    >
-     <View
-     style={[styles.item, {width: width * 0.8, 
-      backgroundColor: theme.colors.background[100],
-    
-    }]}
-     >
+const {width, height} = Dimensions.get('screen');
 
-      <Skeleton height={40} width={40} style={{borderRadius:20 }}/>
-      <Pressable 
-      onPress={()=> dispatch(toggleTheme())}
-      style={{
-        backgroundColor: theme.colors.buttonBackground[100],
-        }}>
-        <Text
-        style={{
-          color: theme.colors.buttonText[100]
-        }}
-        >toggle theme</Text>
-      </Pressable>
-     </View>
-    </View>
+const HomeScreen = () => {
+  const theme = useSelector(themeSelector);
+  const dispatch: AppDispatch = useDispatch();
+  const recipesTypes = useSelector(recipesTypesSelector);
+
+  const renderRecipesTypes = () => {
+    const recipesTypesLabelsArray = Object.keys(recipesTypes);
+    return recipesTypesLabelsArray.map(label => {
+      return (
+        <View style={styles.itemsContainer}>
+          <Text>{label}</Text>
+          {recipesTypes[label.toString()].map((type: RecipeType, i: number) => {
+            return (
+              <View>
+                <RecipeTypeItem
+                  text={type.value}
+                  key={i.toString() + type.value}
+                  selected={type.selected}
+                />
+              </View>
+            );
+          })}
+        </View>
+      );
+    });
+  };
+  return (
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[
+        styles.container,
+        {backgroundColor: theme.colors.background[300]},
+      ]}>
+      {renderRecipesTypes()}
+    </ScrollView>
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    alignItems: 'center', 
-    justifyContent: "center"
+    width: '100%',
   },
   item: {
     padding: 14,
     elevation: 3,
-    shadowColor: "#000000",
+    shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 3
+      height: 3,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    borderRadius: 8
-  }
-})
+    borderRadius: 8,
+  },
+  itemsContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+});
 export default HomeScreen;

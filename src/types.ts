@@ -173,7 +173,8 @@ export interface IState {
   recipes: IRecipes;
   recipe: Recipe;
   randomRecipes: IRecipes;
-  theme: ThemeSlice
+  theme: ThemeSlice;
+  recipesTypes: IRecipesTypesSlice;
 }
 
 export interface IRecipe {
@@ -189,44 +190,69 @@ export interface IRecipes {
 }
 
 export type Theme = {
- colors: {
-  background: {
-    100: string,
-    200: string,
-    300: string,
-  },
-  text: {
-    100: string,
-    200: string,
-    300: string,
-  },
-  buttonBackground: {
-    100: string,
-    200: string,
-    300: string,
-  },
-  buttonText: {
-      100: string,
-      200: string,
-      300: string,
-    },
-    
- }
- sizes: {
+  colors: {
+    background: {
+      100: string;
+      200: string;
+      300: string;
+    };
     text: {
-    text: number,
-    onButtonText: number,
-    title: number,
-    cartText: number
-  },
-  image:{
-    cartImage: number,
-    largeImage: number,
-  },
-  padding: number,
- }
-  }
+      100: string;
+      200: string;
+      300: string;
+    };
+    buttonBackground: {
+      100: string;
+      200: string;
+      300: string;
+    };
+    buttonText: {
+      100: string;
+      200: string;
+      300: string;
+    };
+    frost: {
+      frost1: string;
+      frost2: string;
+      frost3: string;
+      frost4: string;
+    };
+    aurora: {
+      red: string;
+      orange: string;
+      yellow: string;
+      green: string;
+      darkPink: string;
+    };
+  };
+  sizes: {
+    text: {
+      text: number;
+      onButtonText: number;
+      title: number;
+      cartText: number;
+    };
+    image: {
+      cartImage: number;
+      largeImage: number;
+    };
+    padding: number;
+  };
+};
 export interface ThemeSlice {
-    theme: Theme;
-    darkThemeEnabled: boolean;
-} 
+  theme: Theme;
+  darkThemeEnabled: boolean;
+}
+export type RecipeType = {
+  value: string;
+  selected: boolean;
+};
+export type RecipesTypes = {
+  diet: Array<RecipeType>;
+  health: Array<RecipeType>;
+  meal: Array<RecipeType>;
+};
+
+export interface IRecipesTypesSlice {
+  recipesTypes: RecipesTypes;
+}

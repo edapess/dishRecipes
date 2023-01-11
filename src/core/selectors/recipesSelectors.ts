@@ -29,7 +29,7 @@ export const randomRecipesSliceSelector = createSelector(
 );
 export const randomRecipesSelector = createSelector(
   randomRecipesSliceSelector,
-  (randomRecipesSlice) => randomRecipesSlice.recipes,
+  randomRecipesSlice => randomRecipesSlice.recipes,
 );
 export const isRandomRecipesLoadingSelector = createSelector(
   randomRecipesSliceSelector,
@@ -38,5 +38,5 @@ export const isRandomRecipesLoadingSelector = createSelector(
 
 export const randomRecipesErrorSelector = createSelector(
   randomRecipesSliceSelector,
-  randomRecipesSlice => randomRecipesSlice.error
+  randomRecipesSlice => randomRecipesSlice.error,
 );

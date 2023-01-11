@@ -32,7 +32,7 @@ const Splash = ({AppIsReady}: {AppIsReady: boolean}) => {
     if (state === Animation.FadeInImage) {
       Animated.timing(imageOpacity, {
         toValue: 1,
-        duration: 1000,
+        duration: 500,
         useNativeDriver: true,
       }).start(() => {
         setState(Animation.WaitForApp);
@@ -50,8 +50,7 @@ const Splash = ({AppIsReady}: {AppIsReady: boolean}) => {
     if (state === Animation.FadeOut) {
       Animated.timing(containerOpacity, {
         toValue: 0,
-        duration: 1000,
-        delay: 1000,
+        duration: 500,
         useNativeDriver: true,
       }).start(() => {
         setState(Animation.Hidden);
