@@ -41,6 +41,5 @@ export const recipesSlice = createSlice({
   reducers: {},
 });
 
-console.log({recipesSlice});
 export const {} = recipesSlice.actions;
 export default recipesSlice.reducer;

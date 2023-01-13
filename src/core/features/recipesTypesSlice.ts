@@ -61,6 +61,8 @@ export const recipesTypesSlice = createSlice({
       }
     });
   },
+  reducers: {},
+
 });
 
 export default recipesTypesSlice.reducer;

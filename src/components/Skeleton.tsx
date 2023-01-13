@@ -34,12 +34,12 @@ useEffect(()=>{
                 height: "100%",
                 transform: [
                     {translateX: translateX}
-                ]
+                        ],
             }}
             >
             <LinearGradient 
                     style={{width: "100%", height: "100%"}}
-                    colors={["transparent", theme.colors.background[300], "transparent"]}
+                        colors={['rgba(216, 222, 233, 0.3)', "transparent", "transparent"]}
                     start={{x: 1, y: 1}}
                     />
             </Animated.View>

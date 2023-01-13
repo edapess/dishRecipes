@@ -167,7 +167,7 @@ export type Recipes = {
       title: string;
     };
   };
-  hits: Hits;
+  hits: Array<Hits>;
 };
 export interface IState {
   recipes: IRecipes;

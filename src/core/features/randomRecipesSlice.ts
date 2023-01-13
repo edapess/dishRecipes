@@ -4,7 +4,7 @@ import {IRecipes, Recipes} from '../../types';
 
 const initialState: IRecipes = {
   recipes: [],
-  loading: false,
+  loading: true,
   error: undefined,
 };
 
@@ -41,6 +41,5 @@ export const recipesSlice = createSlice({
   reducers: {},
 });
 
-console.log({recipesSlice});
 export const {} = recipesSlice.actions;
 export default recipesSlice.reducer;
