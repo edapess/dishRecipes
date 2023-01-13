@@ -3,6 +3,7 @@ import {Animated, Easing, Pressable, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectRecipesTypes} from '../core/features/recipesTypesSlice';
 import {themeSelector} from '../core/selectors/themeSelectors';
+import { lightTheme } from '../core/features/themeSlice';
 type Props = {
   selected: boolean;
   text: string;
@@ -52,7 +53,7 @@ const RecipeTypeItem = (props: Props) => {
         onPress={() => onSelectPress(props.text)}
         style={{
           padding: theme.sizes.padding.smallButton,
-          backgroundColor: theme.colors.buttonBackground[100],
+          backgroundColor: theme === lightTheme ? theme.colors.frost.frost4 : theme.colors.aurora.yellow,
           borderRadius: theme.sizes.radius.button,
         }}>
         <View style={{}}>

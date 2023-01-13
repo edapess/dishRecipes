@@ -52,7 +52,7 @@ const HomeScreen = () => {
             return (
               <View
                 key={i.toString()}
-                style={{marginBottom: 10, marginRight: 5}}>
+                style={{ marginBottom: 10, margin: 5 }}>
                 <RecipeTypeItem
                   text={type.value}
                   key={i.toString()}
