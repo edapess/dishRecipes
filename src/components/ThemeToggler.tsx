@@ -14,7 +14,6 @@ const ThemeToggler = () => {
   const dispatch = useDispatch();
 
   const startAnimationLightTheme = () => {
-    console.log('startAnimationLightTheme');
     Animated.timing(iconName, {
       toValue: 1,
       useNativeDriver: true,
@@ -25,7 +24,6 @@ const ThemeToggler = () => {
   };
 
   const startAnimationToDarkTheme = () => {
-    console.log('startAnimationToDarkTheme');
     Animated.timing(iconName, {
       toValue: 0,
       useNativeDriver: true,

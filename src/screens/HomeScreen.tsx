@@ -29,14 +29,33 @@ const HomeScreen = () => {
     const recipesTypesLabelsArray = Object.keys(recipesTypes);
     return recipesTypesLabelsArray.map(label => {
       return (
-        <View style={styles.itemsContainer}>
-          <Text>{label}</Text>
+        <View
+          key={label}
+          style={[
+            styles.itemsContainer,
+            {padding: theme.sizes.padding.button},
+          ]}>
+          <View style={{width: '100%', marginBottom: 10}}>
+            <Text
+              style={[
+                {
+                  color: theme.colors.text[300],
+                  fontSize: theme.sizes.text.title,
+                  textTransform: 'capitalize',
+                },
+              ]}>
+              {label}
+            </Text>
+          </View>
+
           {recipesTypes[label.toString()].map((type: RecipeType, i: number) => {
             return (
-              <View>
+              <View
+                key={i.toString()}
+                style={{marginBottom: 10, marginRight: 5}}>
                 <RecipeTypeItem
                   text={type.value}
-                  key={i.toString() + type.value}
+                  key={i.toString()}
                   selected={type.selected}
                 />
               </View>
@@ -60,7 +79,8 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    flexGrow: 1,
+    alignContent: 'space-around',
   },
   item: {
     padding: 14,
@@ -77,9 +97,10 @@ const styles = StyleSheet.create({
   itemsContainer: {
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignContent: 'space-between',
     flexWrap: 'wrap',
+    marginBottom: 20,
   },
 });
 export default HomeScreen;

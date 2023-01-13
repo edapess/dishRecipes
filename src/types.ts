@@ -236,7 +236,14 @@ export type Theme = {
       cartImage: number;
       largeImage: number;
     };
-    padding: number;
+    padding: {
+      screen: number;
+      button: number;
+      smallButton: number;
+    };
+    radius: {
+      button: number;
+    };
   };
 };
 export interface ThemeSlice {

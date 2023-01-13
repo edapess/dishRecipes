@@ -42,12 +42,19 @@ export const lightTheme: Theme = {
       cartImage: 120,
       largeImage: 250,
     },
-    padding: 120,
+    padding: {
+      button: 12,
+      screen: 15,
+      smallButton: 5,
+    },
     text: {
       cartText: 13,
       onButtonText: 15,
       text: 13,
       title: 24,
+    },
+    radius: {
+      button: 5,
     },
   },
 };
@@ -74,8 +81,8 @@ export const darkTheme: Theme = {
       '200': '#E5E9F0',
       '300': '#D8DEE9',
     },
-    aurora:{...lightTheme.colors.aurora},
-    frost:{...lightTheme.colors.frost},
+    aurora: {...lightTheme.colors.aurora},
+    frost: {...lightTheme.colors.frost},
   },
   sizes: {...lightTheme.sizes},
 };
