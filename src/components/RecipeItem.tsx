@@ -1,26 +1,60 @@
 import React, {useEffect, useRef} from 'react';
-import {Text, View, Animated} from 'react-native';
+import {
+  Text,
+  View,
+  Animated,
+  Pressable,
+  Image,
+  StyleSheetProperties,
+} from 'react-native';
+
+type RecipeItemProps = {
+  style: StyleSheetProperties;
+};
 
 const RecipeItem = () => {
-  const fadAnim = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    Animated.timing(fadAnim, {
-      toValue: 1,
-      duration: 2000,
-      useNativeDriver: true,
-    }).start();
-  });
-
   return (
-    <Animated.View
-      style={{
-        width: 200,
-        height: 200,
-        backgroundColor: 'green',
-        opacity: fadAnim,
-      }}>
-      <Text>recipe</Text>
-    </Animated.View>
+    <Pressable
+      style={[
+        styles.product_container,
+        {
+          width: cardWidth,
+          marginBottom: theme.sizes.padding.button,
+          height: cardHeight + theme.sizes.padding.screen,
+        },
+      ]}
+      key={i}
+      onPress={() =>
+        props.navigation.navigate('Recipe', {label: e.recipe.label})
+      }>
+      <View
+        style={{
+          width: skeletonWidth,
+          height: skeletonHeight,
+          borderRadius: 20,
+          position: 'relative',
+        }}>
+        <Image
+          source={{uri: e.recipe.images.REGULAR.url}}
+          style={styles.image}
+        />
+        <View
+          style={[
+            styles.image_overlay,
+            {
+              backgroundColor: darkTheme.colors.background[300],
+            },
+          ]}
+        />
+      </View>
+      <View
+        style={{
+          width: skeletonWidth,
+          height: 20,
+        }}>
+        <Text style={[{color: theme.colors.text[100]}]}>{e.recipe.label}</Text>
+      </View>
+    </Pressable>
   );
 };
 

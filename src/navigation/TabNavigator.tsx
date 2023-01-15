@@ -17,7 +17,7 @@ import {useTheme} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {themeSelector} from '../core/selectors/themeSelectors';
 import SettingsScreen from '../screens/SettingsScreen';
-import { RootStackParamList } from './ApplicationRouter';
+import {RootStackParamList} from './ApplicationRouter';
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
 const TabNavigator = () => {

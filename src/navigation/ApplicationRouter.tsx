@@ -9,20 +9,21 @@ import {fetchRandomRecipes} from '../core/features/randomRecipesSlice';
 import {AppDispatch} from '../types';
 import {themeSelector} from '../core/selectors/themeSelectors';
 import RecipeScreen from '../screens/RecipeScreen';
-import { HOME_SCREEN, RECIPE_SCREEN } from './AppRoutes';
+import {HOME_SCREEN, RECIPE_SCREEN, TAB_SCREEN} from './AppRoutes';
 
 export type RootStackParamList = {
   Home: {};
-  "Saved Recipes": {};
+  'Saved Recipes': {};
   Explore: {};
   Search: {};
-  "Sign in": {};
-  "Sign up": {};
+  'Sign in': {};
+  'Sign up': {};
   Settings: {};
   Recipe: {
-    label: string
-  }
-}
+    label: string;
+  };
+  Tab: {};
+};
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -48,8 +49,12 @@ const ApplicationRouter = () => {
               backgroundColor: theme.colors.background[100],
             },
           }}>
-          <Stack.Screen name={HOME_SCREEN} component={TabNavigator} />
-          <Stack.Screen name={RECIPE_SCREEN} component={RecipeScreen} options={{ headerShown: true, headerTitleStyle: { color: 'red' } }} />
+          <Stack.Screen name={TAB_SCREEN} component={TabNavigator} />
+          <Stack.Screen
+            name={RECIPE_SCREEN}
+            component={RecipeScreen}
+            options={{headerShown: true, headerTitleStyle: {color: 'red'}}}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SplashScreen>
