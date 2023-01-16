@@ -1,19 +1,17 @@
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import TabNavigator from './TabNavigator';
 import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from '../screens/SplashScreen';
-import {useDispatch, useSelector} from 'react-redux';
-import {isRandomRecipesLoadingSelector} from '../core/selectors/recipesSelectors';
-import {fetchRandomRecipes} from '../core/features/randomRecipesSlice';
-import {AppDispatch} from '../types';
+import {useSelector} from 'react-redux';
 import {themeSelector} from '../core/selectors/themeSelectors';
 import RecipeScreen from '../screens/RecipeScreen';
-import {HOME_SCREEN, RECIPE_SCREEN, TAB_SCREEN} from './AppRoutes';
+import {RECIPE_SCREEN, SEARCH_SCREEN, TAB_SCREEN} from './AppRoutes';
+import {NavigationContainer} from '@react-navigation/native';
+import SearchScreen from '../screens/SearchScreen';
 
 export type RootStackParamList = {
   Home: {};
-  'Saved Recipes': {};
+  Saved: {};
   Explore: {};
   Search: {};
   'Sign in': {};
@@ -53,6 +51,11 @@ const ApplicationRouter = () => {
           <Stack.Screen
             name={RECIPE_SCREEN}
             component={RecipeScreen}
+            options={{headerShown: true, headerTitleStyle: {color: 'red'}}}
+          />
+          <Stack.Screen
+            name={SEARCH_SCREEN}
+            component={SearchScreen}
             options={{headerShown: true, headerTitleStyle: {color: 'red'}}}
           />
         </Stack.Navigator>

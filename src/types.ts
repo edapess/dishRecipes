@@ -9,7 +9,7 @@ export interface RecipesWithParams {
   //Example: ingr=5-8
   ingr?: string;
   //Diet label. multiple
-  diet?: string | Array<string>;
+  diet?: Array<string>;
   //Health label. multiple
   health?: Array<string>;
   //The type of cuisine of the recipe
@@ -257,7 +257,7 @@ export type RecipeType = {
 export type RecipesTypes = {
   diet: Array<RecipeType>;
   health: Array<RecipeType>;
-  meal: Array<RecipeType>;
+  mealType: Array<RecipeType>;
 };
 
 export interface IRecipesTypesSlice {

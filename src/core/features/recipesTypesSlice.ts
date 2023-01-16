@@ -29,7 +29,7 @@ const initialState: IRecipesTypesSlice = {
       {value: 'vegan', selected: false},
       {value: 'vegetarian', selected: false},
     ],
-    meal: [
+    mealType: [
       {value: 'breakfast', selected: false},
       {value: 'brunch', selected: false},
       {value: 'lunch', selected: false},
@@ -62,7 +62,6 @@ export const recipesTypesSlice = createSlice({
     });
   },
   reducers: {},
-
 });
 
 export default recipesTypesSlice.reducer;

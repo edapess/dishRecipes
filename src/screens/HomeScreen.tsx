@@ -1,26 +1,22 @@
 import React from 'react';
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
-import {AppDispatch, Recipes, RecipeType} from '../types';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  isRandomRecipesLoadingSelector,
-  randomRecipesErrorSelector,
-  randomRecipesSelector,
-} from '../core/selectors/recipesSelectors';
-import RecipeItem from '../components/RecipeItem';
-import AnimatedPlaceholder from '../components/AnimatedPlaceholder';
-import {useTheme} from '@react-navigation/native';
-import Skeleton from '../components/Skeleton';
 import {themeSelector} from '../core/selectors/themeSelectors';
-import {toggleTheme} from '../core/features/themeSlice';
-import {selectRecipesTypes} from '../core/features/recipesTypesSlice';
-import {recipesTypesSelector} from '../core/selectors/recipesTypesSelectors';
+import {
+  recipesTypesSelector,
+  selectedRecipesTypesSelector,
+} from '../core/selectors/recipesTypesSelectors';
 import RecipeTypeItem from '../components/RecipesTypeItem';
 import {ScrollView} from 'react-native-gesture-handler';
+import {StackScreenProps} from '@react-navigation/stack';
+import {RootStackParamList} from '../navigation/ApplicationRouter';
+import {HOME_SCREEN, SEARCH_SCREEN} from '../navigation/AppRoutes';
 
-const {width, height} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
-const HomeScreen = () => {
+type HomeScreenProps = StackScreenProps<RootStackParamList, 'Home'>;
+
+const HomeScreen: React.FC = (props: HomeScreenProps) => {
   const theme = useSelector(themeSelector);
   const dispatch: AppDispatch = useDispatch();
   const recipesTypes = useSelector(recipesTypesSelector);
@@ -50,9 +46,7 @@ const HomeScreen = () => {
 
           {recipesTypes[label.toString()].map((type: RecipeType, i: number) => {
             return (
-              <View
-                key={i.toString()}
-                style={{ marginBottom: 10, margin: 5 }}>
+              <View key={i.toString()} style={{marginBottom: 10, margin: 5}}>
                 <RecipeTypeItem
                   text={type.value}
                   key={i.toString()}
@@ -73,6 +67,31 @@ const HomeScreen = () => {
         {backgroundColor: theme.colors.background[300]},
       ]}>
       {renderRecipesTypes()}
+      <View
+        style={{
+          width,
+          alignItems: 'center',
+        }}>
+        <Pressable
+          onPress={() => props.navigation.navigate(SEARCH_SCREEN, {})}
+          style={{
+            width: width * 0.3,
+            backgroundColor: theme.colors.buttonBackground[200],
+            padding: theme.sizes.padding.button,
+            borderRadius: theme.sizes.radius.button,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text
+            style={{
+              fontWeight: '500',
+              color: theme.colors.buttonText[200],
+              fontSize: theme.sizes.text.onButtonText,
+            }}>
+            Search
+          </Text>
+        </Pressable>
+      </View>
     </ScrollView>
   );
 };
